@@ -1,0 +1,58 @@
+//
+// Sub Navigation for Ministries
+//------------------------------------------------
+
+.submenu-block {
+	    margin-top: -40px;
+}
+.wpex-select-wrap {
+border-radius: 0px;
+    margin: 0 auto;
+    background: $blue-darker !important;
+    background: linear-gradient(90deg, $blue-darker 0%, $light-grey 100%) !important;
+    color: $white;
+    padding: 10px;
+    border: none;
+
+	.ticon {
+    right: 20px;
+    font-size: 40px;
+    opacity: 1.0;
+
+	}
+}
+
+.wpex-select-wrap select {
+		text-transform: uppercase;
+		font-weight: 600;
+	}
+
+.wpex-select-wrap option {
+    color: #e1e1e1;
+}
+@media only screen and (min-width: 1024px) {
+.vcex-module.vcex-navbar {
+    background: $blue-darker !important;
+    background: linear-gradient(90deg, $blue-darker 0%, $light-grey 100%) !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.vcex-navbar a {
+color: $white;
+    text-transform: uppercase;
+    margin-left: 20px;
+    margin-right: 20px !important;
+	font-weight: 600;
+}
+
+.vcex-navbar a:hover {
+color: #e1e1e1;
+    text-decoration: none !important;
+}
+.theme-txt-link.active {
+    color: #e1e1e1 !important;
+   text-decoration: none;
+}
+ 
+}

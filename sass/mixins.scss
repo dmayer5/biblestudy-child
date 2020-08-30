@@ -1,0 +1,203 @@
+//
+// Media Queries
+// ----------------------------------------
+@mixin mq($height: null, $width: null, $type: max) {
+  // Width
+  @if $width {
+    @media only screen and (#{$type}-width: $width) {
+      & {
+        @content;
+      }
+    }
+  }
+  // Height
+  @if $height {
+    @media (#{$type}-height: $height) {
+      & {
+        @content;
+      }
+    }
+  }
+}
+
+// Width and/or Height MQ
+@mixin mq-width-and-or-height($width, $height, $type: "and") {
+  // Or
+  @if $type == "or" {
+    @media (max-width: $width), (max-height: $height) {
+      & {
+        @content;
+      }
+    }
+  } @else {
+    @media (max-width: $width) and (max-height: $height) {
+      & {
+        @content;
+      }
+    }
+  }
+}
+
+// Print Media Query
+// ----------------------------------------
+@mixin print() {
+  // Print
+  @media print {
+    & {
+      @content;
+    }
+  }
+}
+
+
+//
+// Accent Color Text Styles
+//------------------------------------------------
+@mixin text-color($color) {
+  color: $color;
+}
+
+//
+// Background Color
+//------------------------------------------------
+@mixin background-color($color) {
+  background-color: $color;
+}
+
+//
+// Block Title Font Size
+//------------------------------------------------
+@mixin block-title-font-size($starting-font-size: null) {
+
+  @if ($starting-font-size) {
+    font-size: $starting-font-size;
+  } @else {
+    font-size: $h3-font-size;
+  }
+  @include mq($width: $md){
+    font-size: $h3-font-size;
+  }
+  // Responsive - 767px
+  @include mq($width: $sm){
+    font-size: $h4-font-size;
+  }
+}
+
+//
+// Block Subtitle Font Size
+//------------------------------------------------
+@mixin block-subtitle-font-size($starting-font-size: null) {
+
+  @if ($starting-font-size) {
+    font-size: $starting-font-size;
+  } @else {
+    font-size: $font-size-body-xlg;
+  }
+  // Responsive - 991px
+  @include mq($width: $md){
+    font-size: $font-size-body-lg;
+  }
+  // Responsive - 767px
+  @include mq($width: $sm){
+    font-size: $font-size-body-lg;
+  }
+}
+
+//
+// Content Bottom Margin
+//------------------------------------------------
+@mixin content-margin-bottom($starting-margin-bottom: null) {
+  @if ($starting-margin-bottom) {
+    margin-bottom: $starting-margin-bottom;
+  } @else {
+    margin-bottom: $content-padding-base;
+  }
+  // Responsive - 991px
+  @include mq($width: $md){
+    margin-bottom: $content-padding-md;
+  }
+  // Responsive - 576px
+  @include mq(xs) {
+    margin-bottom: $content-padding-sm;
+  }
+}
+
+//
+// Content Top Margin
+//------------------------------------------------
+@mixin content-margin-top($starting-margin-top: null) {
+  @if ($starting-margin-top) {
+    margin-top: $starting-margin-top;
+  } @else {
+    margin-top: $content-padding-base;
+  }
+  // Responsive - 991px
+  @include mq($width: $md){
+    margin-top: $content-padding-md;
+  }
+  // Responsive - 576px
+  @include mq(xs) {
+    margin-top: $content-padding-sm;
+  }
+}
+
+//
+// Flex Centered Horizontal / Vertical
+//------------------------------------------------
+@mixin flex-centered() {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+//
+// Responsive
+//------------------------------------------------
+@mixin mobile-only() {
+  @include mq(lg) {
+    display: none;
+  }
+  @include mq($width: $md){
+    display: block;
+  }
+}
+
+//
+// Section Padding
+//------------------------------------------------
+@mixin section-padding($padding: null) {
+  @if ($padding) {
+    padding-top: $padding;
+    padding-bottom: $padding;
+  } @else {
+    padding-top: $page-block-padding-base;
+    padding-bottom: $page-block-padding-base;
+  }
+  // Responsive - 991px
+  @include mq($width: $md){
+    padding-top: 65px;
+    padding-bottom: 65px;
+  }
+  // Responsive - 767px
+  @include mq($width: $sm){
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+//
+// White Text Block
+//------------------------------------------------
+@mixin white-text() {
+  color: $white;
+}
+
+@mixin block-title() {
+  @include block-title-font-size();
+  line-height: 1.1;
+  font-weight: $font-weight-bolder;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: $blue;
+}

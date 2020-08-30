@@ -1,0 +1,76 @@
+//
+// Page Header Block
+//------------------------------------------------
+.page-block.page-block-page-header {
+  color: $white;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  margin-top: 0;
+  // Responsive - 767px
+  @include mq($width: $sm) {
+    text-align: center;
+  }
+
+  .page-block-header {
+
+    .block-subtitle {
+      @include block-subtitle-font-size(30px);
+      margin-bottom: 10px;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+
+    }
+  }
+
+  .block-title {
+    line-height: 0.8;
+    letter-spacing: 0;
+    color: $white;
+    font-size: 60px;
+    @include mq($width: $md) {
+      font-size: 50px;
+    }
+    // Responsive - 767px
+    @include mq($width: $sm) {
+      font-size: 40px;
+    }
+    // Responsive - 576px
+    @include mq($width: $xs) {
+      font-size: 40px;
+    }
+  }
+
+  .info-entry {
+
+  }
+
+  .vcex-button.theme-button {
+    margin-top: 20px;
+  }
+
+  .vc_column-inner {
+    margin-bottom: 0;
+  }
+}
+
+// Service Times
+//------------------------------------------------
+.page-header-info-header {
+  text-transform: uppercase;
+  color: $blue-light;
+  font-size: 22px;
+  font-weight: $font-weight-bolder;
+  letter-spacing: 0.5px;
+}
+
+.page-header-info-entry {
+  font-size: 15px;
+  text-transform: initial;
+  @include content-margin-bottom();
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+

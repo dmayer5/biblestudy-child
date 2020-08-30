@@ -1,0 +1,53 @@
+//
+// Next Steps
+//------------------------------------------------
+.page-block.page-block-next-steps {
+  $content-spacing: 15px;
+
+  text-align: center;
+
+  img {
+    border-radius: 50%;
+    margin-bottom: $content-spacing;
+    width: 80%;
+  }
+
+  .theme-button {
+    margin-top: $content-spacing
+  }
+
+
+  h3 {
+    font-size: $font-size-body-xxlg;
+    text-transform: uppercase;
+    color: $blue-medium;
+    font-weight: $font-weight-bold;
+    letter-spacing: 1px;
+    margin: 10px 0;
+    padding: 0;
+  }
+
+  .step-title, h3 {
+    p {
+      font-size: $font-size-body-xxlg;
+      text-transform: uppercase;
+      color: $blue-medium;
+      font-weight: $font-weight-bold;
+      letter-spacing: 4px;
+      margin: 10px 0;
+      padding: 0;
+    }
+  }
+
+  p {
+    font-size: 15px;
+    padding: 0 15px;
+  }
+
+  .vc-column-container {
+    // Responsive - 767px
+    @include mq($width: $sm) {
+      margin-bottom: 30px;
+    }
+  }
+}

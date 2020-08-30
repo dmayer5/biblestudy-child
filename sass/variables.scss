@@ -1,0 +1,172 @@
+//
+// Colors
+// -----------------------------------------
+$white: #ffffff;
+$black: #000000;
+$light-grey: #44515c;
+$blue: #4E7992;
+$blue-old: #2AA3C6;
+$blue-light: #BACBD0;
+$blue-light-old: #44D5FF;
+$blue-medium: #1C7087;
+$blue-dark: #0F3B47;
+$blue-darker: #0C354C;
+$gold: #c3983c;
+$pink: #D0416F;
+$orange: #FA471B;
+$brown: #CE855F;
+$brown-light: #F3B476;
+$green: #22D498;
+$green-light: #23DED5;
+
+$gray-light: #F0F0F0;
+$gray-medium: #666666;
+
+// Total Color Theme Overrides
+// -----------------------------------------
+$accent__main: $blue; // #1a99f3 | #1ba1e2 | #328af1 | #4abfdf | #2674D9 /** original #4a97c2 **/ ( accets color is #274af5 )
+$accent__main-hover: darken($blue, 10%); // #2779bd /** original #3b86b0 **/
+$accent__main-text: $blue; /** original #3b86b0 */
+$accent__main-border: $blue; /** original #3b86b0 */
+$accent__red: $orange;
+
+$accent__vc-brand: $blue-medium;
+$accent__vc-brand-hover: darken($blue-medium, 10%);
+
+// Accent Colors
+$color__blue: $blue;
+$color__blue-hover: darken($color__blue, 10%);
+
+$color__grey: #bbb;
+$color__grey-hover: #999;
+
+$color__gray: #bbb;
+$color__gray-hover: #999;
+
+$color__black: #333;
+$color__black-hover: #555;
+
+$color__orange: $orange;
+$color__orange-hover: darken($color__orange, 10%);
+
+$color__gold: #ddba00;
+$color__gold-hover: #aa8f00;
+
+$color__green: $green;
+$color__green-hover: darken($color__green, 10%);
+
+$color__purple: #9a5e9a;
+$color__purple-hover: #9a5e9a;
+
+$color__teal: $green-light;
+$color__teal-hover: darken($color__teal, 10%);
+
+$color__pink: $pink;
+$color__pink-hover: darken($pink, 10%);
+
+$color__brown: $brown;
+$color__brown-hover: darken($brown, 10%);
+
+$color__red: $orange;
+$color__red-hover: darken($orange, 10%);
+
+$color__rosy: $pink;
+$color__rosy-hover: darken($pink, 10%);
+
+$color__white: #fff;
+$color__white-hover: #fff;
+
+
+//
+// Scaffolding
+//------------------------------------------------
+// Main
+//$container__width: 100%;
+$boxed__layout-inner-padding: 30px;
+$elements__bottom-margin: 20px; // p tags, blockquotes, etc...
+$text__color-main: #666;
+$text__color-main-light: #888;
+
+//
+// Typography
+//------------------------------------------------
+//$font-family-sans-serif: 'Source Sans Pro', sans-serif;
+$font-family-base: "proxima-nova", sans-serif;
+//$font-family-serif: $font-family-base;
+$font-family-icons: "FontAwesome";
+
+$body-color: $black;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 600;
+$font-weight-semi-bold: $font-weight-medium;
+$font-weight-bold: 700;
+$font-weight-bolder: 900;
+
+$font-weight-base: 400;
+
+$h1-font-size: 55px;
+$h2-font-size: 32px;
+$h3-font-size: 28px;
+$h4-font-size: 25px;
+$h5-font-size: 18px;
+
+$font-size-body-xxlg: 20px;
+$font-size-body-xlg: 18px;
+$font-size-body-lg: 16px;
+$font-size-body-base: 15px;
+$font-size-body-md: 14px;
+$font-size-body-sm: 13px;
+$font-size-body-xs: 12px;
+$font-size-body-xxs: 11px;
+$font-size-body-xxxs: 10px;
+
+$lead-font-size: $font-size-body-xlg;
+$lead-font-weight: $font-weight-base;
+
+//
+// Buttons
+//------------------------------------------------
+$btn-border-radius: 3px;
+
+// Buttons
+$buttons__background: $accent__main;
+$buttons__color: #fff;
+$buttons__font-size: 0.923em;
+//$buttons__transition-speed: $transition__speed;
+$buttons__border-radius: 3px;
+$buttons__padding: pem(7px) pem(14px);
+$buttons__padding-medium: .8em 1.2em;
+$buttons__font-weight: $font-weight-normal;
+
+
+//
+// Padding
+//------------------------------------------------
+$page-block-padding-base: 80px;
+$page-block-padding-md: 115px;
+$page-block-padding-lg: 130px;
+$page-block-padding-xs: 45px;
+
+$content-padding-base: 35px;
+$content-padding-md: 25px;
+$content-padding-sm: 15px;
+
+$content-side-padding-base: 15px;
+
+$body-padding-base: 100px;
+$section-padding-base: 50px;
+
+//
+// Media Query Break Points
+//------------------------------------------------
+$lg: 1199px;
+$md: 991px;
+$sm: 767px;
+$xs: 576px;
+
+//
+// Transitions
+//------------------------------------------------
+$transition-base: all ease 0.1s;

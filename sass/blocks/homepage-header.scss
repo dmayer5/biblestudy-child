@@ -1,0 +1,176 @@
+//
+// Homepage Header Block
+//------------------------------------------------
+.page-block.page-block-homepage-header {
+  color: $white;
+  padding-top: 50px;
+  margin-top: 0;
+  // Responsive - 767px
+  @include mq($width: $sm) {
+    text-align: center;
+  }
+
+  .page-block-header {
+    padding-bottom: 50px;
+
+    .block-subtitle {
+      @include block-subtitle-font-size(30px);
+      margin-bottom: 10px;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      padding-top: 30px;
+
+      &.church-title {
+        margin-bottom: 0;
+        font-weight: $font-weight-bold;
+        letter-spacing: 15px;
+        margin-top: 10px;
+        text-transform: uppercase;
+        padding-top: 0;
+      }
+    }
+
+    .block-title {
+      line-height: 0.8;
+      letter-spacing: 0;
+      color: $white;
+      font-size: 90px;
+      @include mq($width: $md) {
+        font-size: 70px;
+      }
+      // Responsive - 767px
+      @include mq($width: $sm) {
+        font-size: 50px;
+      }
+      // Responsive - 576px
+      @include mq($width: $xs) {
+        font-size: 40px;
+      }
+    }
+
+    .vc_column-inner {
+      margin-bottom: 0;
+    }
+  }
+
+  // Service Times
+  //------------------------------------------------
+  .homepage-header-info-header {
+    text-transform: uppercase;
+    color: $blue-light;
+    font-size: 22px;
+    font-weight: $font-weight-bolder;
+    letter-spacing: 0.5px;
+  }
+
+  .homepage-header-info-entry {
+    font-size: 15px;
+    text-transform: initial;
+    @include content-margin-bottom();
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  // Buttons
+  //------------------------------------------------
+  .block-cta {
+    margin: 30px 0;
+    // Responsive - 767px
+    @include mq($width: $sm) {
+      text-align: center !important;
+    }
+  }
+
+  .vc_btn3-container {
+    margin-bottom: 10px;
+  }
+
+  .page-block-footer {
+    .vc_column-inner {
+      margin-bottom: 0;
+    }
+  }
+
+  // Latest Sermon Info
+  //------------------------------------------------
+  .latest-sermon {
+    background: rgba($black, .14);
+    // Responsive - 767px
+    @include mq($width: $sm) {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .vc_column_container {
+
+      .vc_column-inner {
+        margin: auto;
+        padding: 35px 0;
+        // Responsive - 767px
+        @include mq($width: $sm) {
+          padding: 0;
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+
+        .vcex-multi-buttons .theme-button,
+        .vcex-multi-buttons .theme-txt-link {
+          margin: 5px;
+        }
+      }
+    }
+
+    // Section Title Column
+    .latest-sermon-section-title-container {
+      text-transform: uppercase;
+      padding-left: $content-side-padding-base;
+
+      .latest-sermon-section-title {
+        font-size: 25px;
+        font-weight: $font-weight-bolder;
+        letter-spacing: 2px;
+      }
+
+      .latest-sermon-section-subtitle {
+        font-size: $font-size-body-md;
+        font-weight: $font-weight-light;
+        letter-spacing: 2px;
+      }
+    }
+
+    // Latest Sermon Info Column
+    .latest-sermon-sermon-info {
+      text-align: center;
+
+      .latest-sermon-entry-title {
+        font-size: $font-size-body-xlg;
+      }
+
+      .latest-sermon-entry-info {
+        font-size: $font-size-body-sm;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: $font-weight-light;
+
+        strong {
+          color: $blue-light;
+        }
+      }
+    }
+
+    // Latest Sermon Button Column
+    .latest-sermon-cta {
+      padding-right: $content-side-padding-base;
+
+      .vcex-multi-buttons {
+        text-align: right !important;
+        // Responsive - 767px
+        @include mq($width: $sm) {
+          text-align: center !important;
+        }
+      }
+    }
+  }
+}
