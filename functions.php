@@ -15,26 +15,48 @@ add_action('wp_enqueue_scripts', 'total_child_enqueue_parent_theme_style');
 
 
 
-// important: note the priority of 99, the js needs to be placed after tinymce loads
-// important: note that this assumes you're using http://wordpress.org/extend/plugins/verve-meta-boxes/
-// to create the textarea - otherwise change your selector
+//WYSIWYG for Inline Notes
+function inline_notes_js(){
+    wp_enqueue_script('tinymce', get_stylesheet_directory_uri() . '/js/tinymce/tinymce.min.js', array('jquery'), '', true);
+}
+add_action('wp_enqueue_scripts', 'inline_notes_js');
 
-function admin_add_wysiwyg_custom_field_textarea()
-{ ?>
-       <script src='/tinymce/tinymce.min.js'></script>
+function tinymce_inline_notes(){ ?>
 <script>
 tinymce.init({
     selector: '.ldin-notes-form > textarea',
-     menubar: ' '
-});
+	 menubar:false,
+    statusbar: false,
+setup : function(editor) {
+          editor.on("change keyup", function(e){
+            console.log('saving');
+            tinyMCE.triggerSave(); // updates all instances
+            // editor.save(); // updates this instance's textarea
+            $(editor.getElement()).trigger('change'); // for garlic to detect change
+          });
+        }
+      });
 </script>
-/* ]]> */</script>
+
 <?php }
-add_action( 'wp_footer', 'admin_add_wysiwyg_custom_field_textarea', 99 );
+add_action( 'wp_footer', 'tinymce_inline_notes', 99 );
 
 
+function my_custom_scripts(){
+    wp_enqueue_script('custom-js', get_stylesheet_directory_uri() . '/js/scripts.js', array('jquery'), '', true);
+}
+add_action('wp_enqueue_scripts', 'my_custom_scripts');
 
 
+/* Highlighting Javascript
+function my_custom_scripts(){
+    wp_enqueue_script('highlight-js', get_stylesheet_directory_uri() . '/js/highlighting.js', array('jquery'), '', true);
+}
+add_action('wp_enqueue_scripts', 'my_custom_scripts');
+*/
+
+
+// Adds Version Number to Stylesheet, to help with Caching, will be removed at launch
 add_action( 'wp_enqueue_scripts', function() {
 
 	if ( ! defined( 'WPEX_THEME_STYLE_HANDLE' ) ) {
@@ -670,4 +692,6 @@ $output .='</div>';
 
 }
 new CBC_Leader_Module;
+
+
 
