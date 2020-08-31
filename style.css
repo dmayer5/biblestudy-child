@@ -701,7 +701,7 @@ span.ld-lesson-section-heading {
   max-width: 100%;
 }
 
-.leader-notes-section, .lesson-day-section, .lesson-questions-section {
+.leader-notes-section, .lesson-day-section, .lesson-questions-section, .bible-verse-section {
   margin-bottom: 30px;
 }
 
@@ -711,6 +711,17 @@ span.ld-lesson-section-heading {
   border: 1px solid #e5e5e5;
   margin-top: 10px;
   margin-bottom: 50px;
+  border-radius: 3px;
+}
+
+.bible-verse-description {
+  padding: 30px !important;
+  background-color: #f2f2f2 !important;
+  border: 1px solid #e5e5e5;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  font-style: italic;
+  font-weight: 600;
   border-radius: 3px;
 }
 

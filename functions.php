@@ -465,10 +465,125 @@ new CBC_Titles_Module;
 
 
 
+// VC Module for Bible Verses
+if ( ! class_exists( 'CBC_Verse_Module' ) ) {
+
+	class CBC_Verse_Module {
+
+		/**
+		 * Main constructor
+		 *
+		 * @since 1.0.0
+		 */
+		public function __construct() {
+			
+			// Registers the shortcode in WordPress
+			add_shortcode( 'CBC_Verse_Module', array( 'CBC_Verse_Module', 'output' ) );
+
+			// Map shortcode to Visual Composer
+			if ( function_exists( 'vc_lean_map' ) ) {
+				vc_lean_map( 'CBC_Verse_Module', array( 'CBC_Verse_Module', 'map' ) );
+			}
+
+		}
+
+		/**
+		 * Shortcode output
+		 *
+		 * @since 1.0.0
+		 */
+		public static function output( $atts, $content = null ) {
+
+			// Extract shortcode attributes (aka your module settings)
+			extract( vc_map_get_attributes( 'CBC_Verse_Module', $atts ) );
+
+			// Define output
+			$output = '';
+
+			// Sermons are required
+			if ( empty( $verses ) ) {
+				return;
+			}
+
+			// Get repeatable field values
+			$verses = (array) vc_param_group_parse_atts( $verses );
+
+		
+
+				// Loop through sermons
+				foreach ( $verses as $verse ) {
+
+					$output .= '<div class="bible-verse-section clr">';
+
+						if ( ! empty( $verse['label'] ) ) {
+							$output .= '<div class="bible-verse-title"><h2>Bible Verse: <span class="ticon ticon-bookmark-o"></span> ' . $verse['label'];
+						}
+					$output .= '</h2></div>';
+
+						if ( ! empty( $verse['description'] ) ) {
+							$output .= '<div class="bible-verse-description">' . $verse['description'];
+						}
+
+					$output .= '</div>';
+
+				}
+
+			$output .= '</div>';
+
+			// Return output
+			return $output;
+
+		}
+
+		/**
+		 * Map shortcode to VC
+		 *
+		 * This is an array of all your settings which become the shortcode attributes ($atts)
+		 * for the output. See the link below for a description of all available parameters.
+		 *
+		 * @since 1.0.0
+		 * @link  https://wpbakery.atlassian.net/wiki/pages/viewpage.action?pageId=38993922
+		 */
+		public static function map() {
+			return array(
+				'name'        => esc_html__( 'Bible Verse', 'locale' ),
+				'description' => esc_html__( 'Displays the bible verse of choice', 'locale' ),
+				'base'        => 'CBC_Veress_Module',
+				'params'      => array(
+
+					array(
+						'type' => 'param_group',
+						'param_name' => 'verses',
+						'group' => __( 'Bible Verse Content', 'total' ),
+						'value' => urlencode( json_encode( array( ) ) ),
+						'params' => array(
+							array(
+								'type' => 'textfield',
+								'heading' => __( 'Bible Verse Title', 'total' ),
+								'param_name' => 'label',
+								'admin_label' => true,
+							),
+							array(
+								'type' => 'textfield',
+								'heading' => __( 'Bible Verse', 'total' ),
+								'param_name' => 'description',
+								'admin_label' => true,
+							),
+						),
+					),
+				),
+			);
+		}
+
+	}
+
+}
+new CBC_Verse_Module;
+
 
 	
 	
-	// VC Module for Digging Deeper Module
+// VC Module for Digging Deeper Module
 if ( ! class_exists( 'CBC_Digging_Module' ) ) {
 
 	class CBC_Digging_Module {
@@ -692,6 +807,9 @@ $output .='</div>';
 
 }
 new CBC_Leader_Module;
+
+
+
 
 
 
