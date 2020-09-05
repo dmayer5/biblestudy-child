@@ -28,12 +28,15 @@ tinymce.init({
      menubar:false,
     statusbar: false,
 setup : function(editor) {
-          editor.on("change keyup", function(e){
-            console.log('saving');
-            tinyMCE.triggerSave(); // updates all instances
-            // editor.save(); // updates this instance's textarea
-            jQuery(editor.getElement()).trigger('change'); // for garlic to detect change
-          });
+          editor.on('init', function (e) {
+    // console.log('note field id', editor.id.replace('ldin-notes-field','current-notes'));
+    var content = "Enter notes......";
+    var existingNote = document.getElementById(editor.id.replace('ldin-notes-field','current-notes')).innerHTML;
+    if (existingNote.trim().length > 0) {
+        content = existingNote;
+    }
+    editor.setContent(content);
+});
         }
       });
 </script>
@@ -46,14 +49,6 @@ function my_custom_scripts(){
     wp_enqueue_script('custom-js', get_stylesheet_directory_uri() . '/js/scripts.js', array('jquery'), '', true);
 }
 add_action('wp_enqueue_scripts', 'my_custom_scripts');
-
-
-/* Highlighting Javascript
-function my_custom_scripts(){
-    wp_enqueue_script('highlight-js', get_stylesheet_directory_uri() . '/js/highlighting.js', array('jquery'), '', true);
-}
-add_action('wp_enqueue_scripts', 'my_custom_scripts');
-*/
 
 
 // Adds Version Number to Stylesheet, to help with Caching, will be removed at launch
