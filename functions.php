@@ -23,22 +23,31 @@ add_action('wp_enqueue_scripts', 'inline_notes_js');
 
 function tinymce_inline_notes(){ ?>
 <script>
-tinymce.init({
-    selector: '.ldin-notes-form > textarea',
-     menubar:false,
-    statusbar: false,
-setup : function(editor) {
-          editor.on('init', function (e) {
-    // console.log('note field id', editor.id.replace('ldin-notes-field','current-notes'));
-    var content = "Enter notes......";
-    var existingNote = document.getElementById(editor.id.replace('ldin-notes-field','current-notes')).innerHTML;
-    if (existingNote.trim().length > 0) {
-        content = existingNote;
-    }
-    editor.setContent(content);
-});
+    tinymce.init({
+        selector: '.ldin-notes-form > textarea',
+        menubar: false,
+        statusbar: false,
+        valid_elements : '*',
+        valid_styles: '*',
+        setup: function (editor) {
+            editor.on('init', function (e) {
+                // console.log('note field id', editor.id.replace('ldin-notes-field','current-notes'));
+                var content = "Enter notes......";
+                var existingNote = document.getElementById(editor.id.replace('ldin-notes-field','current-notes')).innerHTML;
+                if (existingNote.trim().length > 0) {
+                    content = existingNote;
+                }
+                editor.setContent(content);
+            });
+
+            editor.on("change keyup", function (e) {
+                console.log('saving');
+                tinyMCE.triggerSave(); // updates all instances
+                // editor.save(); // updates this instance's textarea
+                jQuery(editor.getElement()).trigger('change'); // for garlic to detect change
+            });
         }
-      });
+    });
 </script>
 
 <?php }
