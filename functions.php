@@ -25,14 +25,14 @@ function tinymce_inline_notes(){ ?>
 <script>
 tinymce.init({
     selector: '.ldin-notes-form > textarea',
-	 menubar:false,
+     menubar:false,
     statusbar: false,
 setup : function(editor) {
           editor.on("change keyup", function(e){
             console.log('saving');
             tinyMCE.triggerSave(); // updates all instances
             // editor.save(); // updates this instance's textarea
-            $(editor.getElement()).trigger('change'); // for garlic to detect change
+            jQuery(editor.getElement()).trigger('change'); // for garlic to detect change
           });
         }
       });
