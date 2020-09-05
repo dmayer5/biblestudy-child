@@ -15,7 +15,7 @@ add_action('wp_enqueue_scripts', 'total_child_enqueue_parent_theme_style');
 
 
 
-/*WYSIWYG for Inline Notes
+//WYSIWYG for Inline Notes
 function inline_notes_js(){
     wp_enqueue_script('tinymce', get_stylesheet_directory_uri() . '/js/tinymce/tinymce.min.js', array('jquery'), '', true);
 }
@@ -39,7 +39,7 @@ setup : function(editor) {
 </script>
 
 <?php }
-add_action( 'wp_footer', 'tinymce_inline_notes', 99 ); */
+add_action( 'wp_footer', 'tinymce_inline_notes', 99 ); 
 
 
 function my_custom_scripts(){
