@@ -24,13 +24,14 @@ add_action('wp_enqueue_scripts', 'inline_notes_js');
 function tinymce_inline_notes(){ ?>
 <script>
     // add other options here that you like just NO block elements
-    // var toolbarItems = 'undo redo cut copy paste | bold italic underline | backcolor forecolor | code';
+    // var toolbarItems = 'undo redo cut copy paste | bold italic underline | bullist numlist | backcolor forecolor | code';
     var toolbarItems = 'undo redo | bold italic underline | backcolor forecolor';
 
     tinymce.init({
         selector: '.ldin-notes-form > textarea',
         menubar: false,
         statusbar: false,
+        //plugins: 'paste code lists',
         plugins: 'paste code',
         paste_auto_cleanup_on_paste : true,
         paste_as_text: true,
