@@ -23,15 +23,25 @@ add_action('wp_enqueue_scripts', 'inline_notes_js');
 
 function tinymce_inline_notes(){ ?>
 <script>
+    // add other options here that you like just NO block elements
+    // var toolbarItems = 'undo redo cut copy paste | bold italic underline | backcolor forecolor | code';
+    var toolbarItems = 'undo redo cut copy paste | bold italic underline | backcolor forecolor';
+
     tinymce.init({
         selector: '.ldin-notes-form > textarea',
         menubar: false,
         statusbar: false,
-        valid_elements : '*',
-        valid_styles: '*',
+        plugins: 'code',
+        toolbar: toolbarItems,
+        valid_elements: "*",
+        forced_root_block: false,
+        extended_valid_elements : "span[style]",
+        mobile: {
+            menubar: false,
+            toolbar: toolbarItems
+        },
         setup: function (editor) {
             editor.on('init', function (e) {
-                // console.log('note field id', editor.id.replace('ldin-notes-field','current-notes'));
                 var content = "Enter notes......";
                 var existingNote = document.getElementById(editor.id.replace('ldin-notes-field','current-notes')).innerHTML;
                 if (existingNote.trim().length > 0) {
@@ -51,13 +61,32 @@ function tinymce_inline_notes(){ ?>
 </script>
 
 <?php }
-add_action( 'wp_footer', 'tinymce_inline_notes', 99 ); 
+add_action( 'wp_footer', 'tinymce_inline_notes', 99 );
 
+// START Stop removing div tags from WordPress - Linklay
+function ikreativ_tinymce_fix( $init )
+{
+    // html elements being stripped
+    $init['extended_valid_elements'] = 'div[*]';
+
+    // pass back to wordpress
+    return $init;
+}
+add_filter('tiny_mce_before_init', 'ikreativ_tiny_mce_fix');
+// END Stop removing div tags from WordPress - Linklay
 
 function my_custom_scripts(){
     wp_enqueue_script('custom-js', get_stylesheet_directory_uri() . '/js/scripts.js', array('jquery'), '', true);
 }
 add_action('wp_enqueue_scripts', 'my_custom_scripts');
+
+
+/* Highlighting Javascript
+function my_custom_scripts(){
+    wp_enqueue_script('highlight-js', get_stylesheet_directory_uri() . '/js/highlighting.js', array('jquery'), '', true);
+}
+add_action('wp_enqueue_scripts', 'my_custom_scripts');
+*/
 
 
 // Adds Version Number to Stylesheet, to help with Caching, will be removed at launch
