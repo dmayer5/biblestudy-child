@@ -32,7 +32,7 @@ function tinymce_inline_notes(){ ?>
         menubar: false,
         statusbar: false,
         //plugins: 'paste code lists',
-        plugins: 'paste code',
+        plugins: 'paste',
         paste_auto_cleanup_on_paste : true,
         paste_as_text: true,
         paste_remove_styles: true,
@@ -40,7 +40,10 @@ function tinymce_inline_notes(){ ?>
         paste_strip_class_attributes: true,
         toolbar: toolbarItems,
         valid_elements: "*",
-        forced_root_block: false,
+        force_br_newlines : true,
+  		force_p_newlines : false,
+  		forced_root_block : '', // Needed for 3.x
+  		remove_linebreaks: false,
         extended_valid_elements : "span[style]",
         mobile: {
             menubar: false,
@@ -81,6 +84,8 @@ function ikreativ_tinymce_fix( $init )
 }
 add_filter('tiny_mce_before_init', 'ikreativ_tiny_mce_fix');
 // END Stop removing div tags from WordPress - Linklay
+
+
 
 
 /*

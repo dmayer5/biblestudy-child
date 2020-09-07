@@ -368,6 +368,10 @@ body {
   color: #000000;
 }
 
+strong {
+  font-weight: 600;
+}
+
 #site-navigation-wrap.has-menu-underline .main-navigation-ul > li.current-menu-parent > a > .link-inner::after {
   opacity: 1;
   transform: scaleX(1);

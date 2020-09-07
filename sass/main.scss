@@ -19,6 +19,9 @@ body {
   color: $black;
   //padding: 0 $body-padding-base $body-padding-base $body-padding-base;
 }
+strong {
+    font-weight: 600;
+}
 
 #site-navigation-wrap.has-menu-underline .main-navigation-ul>li.current-menu-parent>a>.link-inner::after{
 	opacity: 1;
