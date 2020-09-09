@@ -86,13 +86,24 @@ add_filter('tiny_mce_before_init', 'ikreativ_tiny_mce_fix');
 // END Stop removing div tags from WordPress - Linklay
 
 
-
-
-/*
-function my_custom_scripts(){
-    wp_enqueue_script('custom-js', get_stylesheet_directory_uri() . '/js/scripts.js', array('jquery'), '', true);
-}
-add_action('wp_enqueue_scripts', 'my_custom_scripts');*/
+function my_custom_scripts(){	
+   global  $post;	
+    wp_enqueue_script('custom-js', get_stylesheet_directory_uri() . '/js/scripts.js', array('jquery'), '', true);	
+        if ( 'sfwd-lessons' === get_post_type() ) {	
+        if ( wp_script_is( 'selectify-js', 'enqueued' ) ) {	
+            return;	
+        } else {	
+            wp_register_script('selectify-js', get_stylesheet_directory_uri() . '/js/selectify.js', array('jquery'), '', true);	
+            wp_enqueue_script( 'selectify-js' );	
+            wp_localize_script('selectify-js', 'selectify_vars', array(	
+                'postID' => $post->ID	
+            )	
+        );	
+             wp_enqueue_style('selectify-style', get_stylesheet_directory_uri() . '/css/selectify.css', array(), 1.1);	
+        }	
+    }	
+}	
+add_action('wp_enqueue_scripts', 'my_custom_scripts');
 
 
 // Adds Version Number to Stylesheet, to help with Caching, will be removed at launch
