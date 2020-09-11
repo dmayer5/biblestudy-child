@@ -5,6 +5,10 @@
 var questions = document.querySelectorAll('.lesson-single-question');
 for( i=0; i<questions.length; i++ ){
     questions[i].setAttribute("index-id", i+1);
+    //jqueryelkem =    jQuery(questions[i]);
+   // if(jqueryelkem.children('.ldin-note').length){
+       // jqueryelkem.children('.ldin-note').insertAfter(jqueryelkem);
+    //}
 }
 jQuery('.lesson-single-question').each(function(){
  jQuery(this).addClass('runingggg');
@@ -27,7 +31,7 @@ jQuery('.lesson-single-question').each(function(){
                             	id = parseInt(data);
                                 console.log(id);
                                 console.log(data.replace(id, ''));
-                                jQuery('.lesson-single-question[index-id='+id+']').html(data.replace(id, ''));
+                                jQuery('.lesson-single-question[index-id='+id+'] .selection_text_enabled').html(data.replace(id, ''));
                             }jQuery('.runingggg').removeClass('runingggg');
                             
                            
@@ -43,12 +47,12 @@ jQuery(document).on('touchend, mouseup', '.lesson-single-question', function(){
                        console.log(text);
                         length = document.getSelection().toString().length;
                         if(length < 4) return false;
-                    main_html = jQuery(this).html();
+                    main_html = jQuery(this).children('.selection_text_enabled').html();
                     var re = new RegExp((text),"g");
-                    corped = escape(main_html).replace(re, '<span class="smallcaps">'+text+'</span><div class="selection_attr this_last"><a data-color="#E5F962"><span style="background-color:#E5F962"></span></a><a data-color="#72F721"><span style="background-color:#72F721"></span></a><a data-color="#6689FF"><span style="background-color:#6689FF"></span></a><a data-color="#D94BFF"><span style="background-color:#D94BFF"></span></a><a data-color="#FF81B1"><span style="background-color:#FF81B1"></span></a><a class="cros" data-color="remove">✕</a></div>');
+                    corped = escape(main_html).replace(re, '<span class="smallcaps">'+text+'</span><div class="selection_attr this_last hide"><a data-color="#E5F962"><span style="background-color:#E5F962"></span></a><a data-color="#72F721"><span style="background-color:#72F721"></span></a><a data-color="#6689FF"><span style="background-color:#6689FF"></span></a><a data-color="#D94BFF"><span style="background-color:#D94BFF"></span></a><a data-color="#FF81B1"><span style="background-color:#FF81B1"></span></a><a class="cros" data-color="remove">✕</a></div>');
                     console.log(corped);
 
-                    jQuery(this).html(unescape(corped).replace(/%20/g, " ").replace(/%3A/g, ":").replaceAll('%u201D', "\”").replaceAll('%u201C', "\“").replace(/%2C/g, ",").replaceAll('%u2019', "’").replace(/%25/g, "%").replace(/%21/g, "!").replace(/%22/g, "\"").replace(/%23/g, "#").replace(/%24/g, "$").replace(/%26/g, "&").replace(/%27/g, "'").replace(/%28/g, "(").replace(/%29/g, ")").replace(/%2B/g, "+").replace(/%2D/g, "-").replace(/%2F/g, "/").replace(/%3F/g, "?"));
+                    jQuery(this).children('.selection_text_enabled').html(unescape(corped).replace(/%20/g, " ").replace(/%3A/g, ":").replaceAll('%u201D', "\”").replaceAll('%u201C', "\“").replace(/%2C/g, ",").replaceAll('%u2019', "’").replace(/%25/g, "%").replace(/%21/g, "!").replace(/%22/g, "\"").replace(/%23/g, "#").replace(/%24/g, "$").replace(/%26/g, "&").replace(/%27/g, "'").replace(/%28/g, "(").replace(/%29/g, ")").replace(/%2B/g, "+").replace(/%2D/g, "-").replace(/%2F/g, "/").replace(/%3F/g, "?")).not('.ldin-note');;
                     //do an updaaateeac
                     //setTimeout(function(){ 
                         //jQuery('.this_last').addClass('hide').removeClass('this_last');
@@ -105,7 +109,7 @@ jQuery('body').click(function(evt){
 function upddaate_sselection(element,posstid ){
     var formData = {
                                 'index-it'              : element.attr('index-id'),
-                                'contennt'             : element.html(),
+                                'contennt'             : element.children('.selection_text_enabled').html(),
                                 'postid' : selectify_vars.postID
                             };
                     jQuery.ajax({
@@ -124,3 +128,31 @@ function upddaate_sselection(element,posstid ){
                         });
 
 }
+jQuery('.ldin-notes-form textarea').on('change', function(){
+    var length = jQuery(this).val().length;
+        var height = length/51*120;
+        console.log(length, height);
+        //console.log(height);
+        if(length/51 > 1){
+            if(jQuery(this).siblings('.tox.tox-tinymce').attr('data-height') != ""){
+                if(parseInt(jQuery(this).siblings('.tox.tox-tinymce').attr('data-height')) > 200){
+                    jQuery(this).siblings('.tox.tox-tinymce').css('height', length/51*50+'px');
+                    jQuery(this).siblings('.tox.tox-tinymce').attr('data-height', length/51*50);
+                }
+            }
+            else{
+                jQuery(this).siblings('.tox.tox-tinymce').attr('data-height', height);
+                jQuery(this).siblings('.tox.tox-tinymce').css('height', height+'px');
+            }
+        }
+    var Variables = {};
+    Variables.$obj = jQuery(this);
+    Variables.ResizeTimer = setTimeout(
+         function(){
+            Variables.$obj.siblings('.ldin-notes-button').children('.ldin-save-notes').addClass('clicked_from_code');
+            Variables.$obj.siblings('.ldin-notes-button').children('.ldin-save-notes').click();
+            console.log(Variables.$obj);
+         },
+         10000
+    );
+});

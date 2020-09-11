@@ -857,9 +857,3 @@ $output .='</div>';
 
 }
 new CBC_Leader_Module;
-
-
-
-
-
-

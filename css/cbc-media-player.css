@@ -1,0 +1,85 @@
+/* Player background */
+.coach-mejs-container.mejs-container,
+.coach-mejs-container .mejs-controls,
+.coach-mejs-container .mejs-embed,
+.coach-mejs-container .mejs-embed body {
+  background-color: transparent;
+}
+
+/* Player controls */
+.coach-mejs-container .mejs-button > button {
+  background-image: url("../images/mejs-controls-dark.svg");
+}
+
+.coach-mejs-container .mejs-time {
+  color: #888888;
+}
+
+/* Progress and audio bars */
+
+/* Progress and audio bar background */
+.coach-mejs-container .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-total,
+.coach-mejs-container .mejs-controls .mejs-time-rail .mejs-time-total {
+  background-color: #ccc;
+}
+
+/* Track progress bar background (amount of track fully loaded)
+  We prefer to style these with the main accent color of our theme */
+.coach-mejs-container .mejs-controls .mejs-time-rail .mejs-time-loaded {
+  background-color: rgba(219, 78, 136, 0.075);
+}
+.coach-mejs-container .mejs-button > button:hover {
+    background-color: transparent !important;
+}
+
+/* Current track progress and active audio volume level bar */
+.coach-mejs-container .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current,
+.coach-mejs-container .mejs-controls .mejs-time-rail .mejs-time-current {
+  background: #2aa3c6;
+}
+
+/* Reduce height of the progress and audio bars */
+.coach-mejs-container .mejs-time-buffering,
+.coach-mejs-container .mejs-time-current,
+.coach-mejs-container .mejs-time-float,
+.coach-mejs-container .mejs-time-float-corner,
+.coach-mejs-container .mejs-time-float-current,
+.coach-mejs-container .mejs-time-hovered,
+.coach-mejs-container .mejs-time-loaded,
+.coach-mejs-container .mejs-time-marker,
+.coach-mejs-container .mejs-time-total,
+.coach-mejs-container .mejs-horizontal-volume-total,
+.coach-mejs-container .mejs-time-handle-content {
+  height: 3px;
+}
+
+.coach-mejs-container .mejs-time-handle-content {
+  top: -6px;
+}
+.coach-mejs-container .mejs-time-float {
+	top: 25px;
+}
+.mejs-controls .mejs-time-rail span {
+	background: transparent;
+}
+.mejs-controls .mejs-time-rail span:hover {
+	background: transparent;
+}
+span.mejs-time-float-corner, span.mejs-time-float {
+    display: none;
+}
+
+.mejs-time-float {
+	border: none;
+	font-size: 15px;
+	font-weight: 500;
+	color: #2aa3c6;
+}
+
+.coach-mejs-container .mejs-time-total {
+  margin-top: 8px;
+}
+
+.coach-mejs-container .mejs-horizontal-volume-total {
+  top: 19px;
+}

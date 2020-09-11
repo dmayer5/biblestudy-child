@@ -1,0 +1,35 @@
+  .lesson-single-question::-moz-selection { /* Code for Firefox */
+  
+  background: yellow;
+}
+
+.lesson-single-question::selection {
+  
+  background: #E5F962;
+}
+span.smallcaps {
+  
+    background: #E5F962;
+}
+.selection_attr a {
+    margin-right: 3px;
+    cursor: pointer;
+    padding:1px;
+}
+.selection_attr a span {
+    padding: 8px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.selection_attr {
+    display: inline-block;
+    position: absolute;
+    margin-top: 23px;
+    margin-left: -20px;
+    background-color: #fff;
+    padding: 3px;
+}
+.selection_attr.hide {
+    display: none !important;
+    opacity: 0;
+}
