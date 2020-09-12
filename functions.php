@@ -1,4 +1,5 @@
 <?php
+
 function total_child_enqueue_parent_theme_style()
 {
 
@@ -12,6 +13,23 @@ function total_child_enqueue_parent_theme_style()
 }
 
 add_action('wp_enqueue_scripts', 'total_child_enqueue_parent_theme_style');
+
+
+// Outputs Google Analytics
+function cbc_google_analytics() {
+	?>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-169341409-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-169341409-2');
+</script>
+	<?php
+}
+add_action('wp_head', 'cbc_google_analytics',99);
 
 
 
@@ -207,7 +225,7 @@ if(is_user_logged_in()):?>
 </script>
 <?php endif;?>
 <script>
-    if(window.location.pathname == "/member-login/"){
+    if(window.location.pathname == "/member-login/") {
         var url_string =  window.location.href;
         var url = new URL(url_string);
         var c = url.searchParams.get("refer");
@@ -325,8 +343,8 @@ function go_home(){
 }
 
 
-// Home/Login/Register Page Redirect
-	  $blog_id = get_current_blog_id();
+// Login/Register Page Redirect
+$blog_id = get_current_blog_id();
   if ( $blog_id == 1 ) {
 function login_check()
 {
@@ -336,7 +354,21 @@ function login_check()
     }
 }
 add_action('wp', 'login_check'); 
-  }
+}
+
+/* Logged in User Homepage Page Redirect
+$blog_id = get_current_blog_id();
+  if (( $blog_id == 1 ) ) {
+function home_logged_in_check(){
+ if ( is_user_logged_in() && is_page(5) ){
+	 $redirect_to = get_user_meta($user -> ID, 'user_last_visited');
+wp_redirect($redirect_to );
+ }
+
+}
+add_action('template_redirect', 'home_logged_in_check'); 
+}
+*/
 
 // Gravity Forms PMP Connector
 add_filter("pmpro_login_redirect", "__return_false");
@@ -357,23 +389,20 @@ function cbc_crossref() {
 		settings: {
 			bibleReader: "bible.faithlife",
 			bibleVersion: "ESV",
-			caseInsensitive: !false,
-			logosLinkIcon: "light",
-			noSearchClassNames: ["h1","h2","h3","span.passage-entry",".passage-entry"],			
+			noSearchClassNames: ["h1","h2","h3","h4","a","span.passage-entry",".passage-entry"],
+			noSearchTagNames: [],
 			roundCorners: true,
 			socialSharing: [],
-			tagChapters: true,
 			customStyle : {
 				heading: {
 					backgroundColor : "#f2f2f2",
 					color : "#4E7992",
-					fontfamily: "proxima-nova",
-					fontSize : "18px"
+					fontFamily : "Arial, 'Helvetica Neue', Helvetica, sans-serif",
+					fontSize : "16px"
 				},
 				body   : {
 					color : "#303030",
-					fontfamily: "proxima-nova",
-					fontWeight : "100",
+					fontFamily : "Arial, 'Helvetica Neue', Helvetica, sans-serif",
 					fontSize : "14px"
 				}
 			}
@@ -388,7 +417,7 @@ function cbc_crossref() {
 
 <?php
 }
-add_action('wp_footer', 'cbc_crossref');
+add_action('wp_footer', 'cbc_crossref', 10, 1);
 
 
 // Line Dot Shortcode

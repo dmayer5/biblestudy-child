@@ -12,8 +12,9 @@ for( i=0; i<questions.length; i++ ){
 }
 jQuery('.lesson-single-question').each(function(){
  jQuery(this).addClass('runingggg');
+ var indexid = jQuery(this).attr('index-id');
     var formData = {
-                                'hhtmlleer_id'              :  jQuery(this).attr('index-id'),
+                                'hhtmlleer_id'              :  indexid,
                                 'posst_id'             : selectify_vars.postID,
                             };
                     jQuery.ajax({
@@ -28,10 +29,11 @@ jQuery('.lesson-single-question').each(function(){
                             // log data to the console so we can see
                             console.log(data); 
                             if(data != ""){
-                            	id = parseInt(data);
-                                console.log(id);
-                                console.log(data.replace(id, ''));
-                                jQuery('.lesson-single-question[index-id='+id+'] .selection_text_enabled').html(data.replace(id, ''));
+                            	//id = parseInt(data);
+                                console.log(indexid);
+                                //console.log(data.replace(id, ''));
+                                jQuery('.lesson-single-question[index-id='+indexid+'] .selection_text_enabled').html(data);
+                                jQuery('body').click();
                             }jQuery('.runingggg').removeClass('runingggg');
                             
                            
@@ -80,12 +82,13 @@ jQuery('body').click(function(evt){
                 jQuery(document).on('click',  '.selection_attr a', function(){
                     var color = jQuery(this).attr('data-color');
                     if(color =='remove'){
+                        var indexid = jQuery(this).parent().parent().parent('div.lesson-single-question').attr('index-id');
                         jQuery(this).parent().prev('span').contents().unwrap();
                         jQuery(this).parent().remove();
-                        upddaate_sselection(jQuery(this).parent().parent('.lesson-single-question'), selectify_vars.postID);
+                        upddaate_sselection( jQuery('.lesson-single-question[index-id='+indexid+']') , selectify_vars.postID);
                     }
                     jQuery(this).parent().prev('span').css('backgroundColor', color);
-                    upddaate_sselection(jQuery(this).parent().parent('.lesson-single-question'), selectify_vars.postID);
+                    upddaate_sselection(jQuery(this).parent().parent().parent('div.lesson-single-question'), selectify_vars.postID);
                     
                 })
                 function getSelectionHtml() {
@@ -107,10 +110,12 @@ jQuery('body').click(function(evt){
     return html;
 }
 function upddaate_sselection(element,posstid ){
+    jQuery('body').click();
+    console.log(element, posstid);
     var formData = {
                                 'index-it'              : element.attr('index-id'),
                                 'contennt'             : element.children('.selection_text_enabled').html(),
-                                'postid' : selectify_vars.postID
+                                'postid' : posstid
                             };
                     jQuery.ajax({
                         type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
@@ -129,7 +134,7 @@ function upddaate_sselection(element,posstid ){
 
 }
 jQuery('.ldin-notes-form textarea').on('change', function(){
-    var length = jQuery(this).val().length;
+    /*var length = jQuery(this).val().length;
         var height = length/51*120;
         console.log(length, height);
         //console.log(height);
@@ -144,7 +149,7 @@ jQuery('.ldin-notes-form textarea').on('change', function(){
                 jQuery(this).siblings('.tox.tox-tinymce').attr('data-height', height);
                 jQuery(this).siblings('.tox.tox-tinymce').css('height', height+'px');
             }
-        }
+        }*/
     var Variables = {};
     Variables.$obj = jQuery(this);
     Variables.ResizeTimer = setTimeout(
