@@ -1,9 +1,5 @@
 (function ($) {
 
-    $(document).ready(function () {
-        console.log("Running");
-    });
-
     //
     // Auto Expand Note Inputs
     // ------------------------------------------------------------
@@ -42,9 +38,12 @@
     //
     // Auto Expand Note Inputs - On window resize
     // ------------------------------------------------------------
-    // $(window).on('resize', function(){
-    //
-    // });
-
+    $(window).on('resize', function () {
+        $(".ldin-notes-form textarea").each(function () {
+            var textAreaSelected = $(this).next('.tox.tox-tinymce');
+            var getHeightOfText = $(this).next('.tox.tox-tinymce').find('iframe').contents().find('.mce-content-body');
+            setNoteHeight(textAreaSelected, getHeightOfText);
+        })
+    });
 
 })(jQuery);
