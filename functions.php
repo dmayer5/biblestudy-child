@@ -493,40 +493,20 @@ if ( ! class_exists( 'CBC_Titles_Module' ) ) {
 			extract( vc_map_get_attributes( 'CBC_Titles_Module', $atts ) );
 
 			// Define output
-			$output = '';
+			
+			
+    $html = '
+   <div class="lesson-day-section clr">
+     
+        <div class="lesson-day-title"><h2><span class="ticon ticon-book"></span> ' . $label . '</h2></div>
+         
+        <div class="lesson-day-description">' . $description . '</div>
+     
+    </div>';      
+     
+    return $html;
+     
 
-			// Sermons are required
-			if ( empty( $titles ) ) {
-				return;
-			}
-
-			// Get repeatable field values
-			$titles = (array) vc_param_group_parse_atts( $titles );
-
-		
-
-				// Loop through sermons
-				foreach ( $titles as $title ) {
-
-					$output .= '<div class="lesson-day-section clr">';
-
-						if ( ! empty( $title['label'] ) ) {
-							$output .= '<div class="lesson-day-title"><h2><span class="ticon ticon-book"></span> ' . $title['label'];
-						}
-					$output .= '</h2></div>';
-
-						if ( ! empty( $title['description'] ) ) {
-							$output .= '<div class="lesson-day-description">' . $title['description'];
-						}
-
-					$output .= '</div>';
-
-				}
-
-			$output .= '</div>';
-
-			// Return output
-			return $output;
 
 		}
 
@@ -541,31 +521,26 @@ if ( ! class_exists( 'CBC_Titles_Module' ) ) {
 		 */
 		public static function map() {
 			return array(
-				'name'        => esc_html__( 'Day Title/Description', 'locale' ),
-				'description' => esc_html__( 'Displays the Day Title/Description', 'locale' ),
-				'base'        => 'CBC_Titles_Module',
+				'name'        => esc_html__( 'Lesson Day Title w/ Description', 'locale' ),
+				'description' => esc_html__( 'Displays the Title/Description', 'locale' ),
+				'base'        => 'CBC_Veress_Module',
 				'params'      => array(
 
-					array(
-						'type' => 'param_group',
-						'param_name' => 'titles',
-						'group' => __( 'Titles', 'total' ),
-						'value' => urlencode( json_encode( array( ) ) ),
-						'params' => array(
+				
 							array(
 								'type' => 'textfield',
 								'heading' => __( 'Title', 'total' ),
 								'param_name' => 'label',
-								'admin_label' => true,
+								'admin_label' => false,
 							),
 							array(
 								'type' => 'textfield',
 								'heading' => __( 'Description', 'total' ),
 								'param_name' => 'description',
-								'admin_label' => true,
-							),
+								'admin_label' => false,
+							
 						),
-					),
+					
 				),
 			);
 		}
@@ -574,7 +549,6 @@ if ( ! class_exists( 'CBC_Titles_Module' ) ) {
 
 }
 new CBC_Titles_Module;
-
 
 
 
@@ -611,40 +585,20 @@ if ( ! class_exists( 'CBC_Verse_Module' ) ) {
 			extract( vc_map_get_attributes( 'CBC_Verse_Module', $atts ) );
 
 			// Define output
-			$output = '';
+			
+			
+    $html = '
+   <div class="bible-verse-section clr">
+     
+        <div class="bible-verse-title"><h2><span class="ticon ticon-bookmark-o"></span> Bible Verse: ' . $label . '</h2></div>
+         
+        <div class="bible-verse-description">' . $description . '</div>
+     
+    </div>';      
+     
+    return $html;
+     
 
-			// Sermons are required
-			if ( empty( $verses ) ) {
-				return;
-			}
-
-			// Get repeatable field values
-			$verses = (array) vc_param_group_parse_atts( $verses );
-
-		
-
-				// Loop through sermons
-				foreach ( $verses as $verse ) {
-
-					$output .= '<div class="bible-verse-section clr">';
-
-						if ( ! empty( $verse['label'] ) ) {
-							$output .= '<div class="bible-verse-title"><h2>Bible Verse: <span class="ticon ticon-bookmark-o"></span> ' . $verse['label'];
-						}
-					$output .= '</h2></div>';
-
-						if ( ! empty( $verse['description'] ) ) {
-							$output .= '<div class="bible-verse-description">' . $verse['description'];
-						}
-
-					$output .= '</div>';
-
-				}
-
-			$output .= '</div>';
-
-			// Return output
-			return $output;
 
 		}
 
@@ -661,29 +615,24 @@ if ( ! class_exists( 'CBC_Verse_Module' ) ) {
 			return array(
 				'name'        => esc_html__( 'Bible Verse', 'locale' ),
 				'description' => esc_html__( 'Displays the bible verse of choice', 'locale' ),
-				'base'        => 'CBC_Veress_Module',
+				'base'        => 'CBC_Verse_Module',
 				'params'      => array(
 
-					array(
-						'type' => 'param_group',
-						'param_name' => 'verses',
-						'group' => __( 'Bible Verse Content', 'total' ),
-						'value' => urlencode( json_encode( array( ) ) ),
-						'params' => array(
+				
 							array(
 								'type' => 'textfield',
 								'heading' => __( 'Bible Verse Title', 'total' ),
 								'param_name' => 'label',
-								'admin_label' => true,
+								'admin_label' => false,
 							),
 							array(
 								'type' => 'textfield',
 								'heading' => __( 'Bible Verse', 'total' ),
 								'param_name' => 'description',
-								'admin_label' => true,
-							),
+								'admin_label' => false,
+							
 						),
-					),
+					
 				),
 			);
 		}
@@ -697,9 +646,9 @@ new CBC_Verse_Module;
 	
 	
 // VC Module for Digging Deeper Module
-if ( ! class_exists( 'CBC_Digging_Module' ) ) {
+if ( ! class_exists( 'CBC_Digging_Deeper_Module' ) ) {
 
-	class CBC_Digging_Module {
+	class CBC_Digging_Deeper_Module {
 
 		/**
 		 * Main constructor
@@ -709,11 +658,11 @@ if ( ! class_exists( 'CBC_Digging_Module' ) ) {
 		public function __construct() {
 			
 			// Registers the shortcode in WordPress
-			add_shortcode( 'CBC_Digging_Module', array( 'CBC_Digging_Module', 'output' ) );
+			add_shortcode( 'CBC_Digging_Deeper_Module', array( 'CBC_Digging_Deeper_Module', 'output' ) );
 
 			// Map shortcode to Visual Composer
 			if ( function_exists( 'vc_lean_map' ) ) {
-				vc_lean_map( 'CBC_Digging_Module', array( 'CBC_Digging_Module', 'map' ) );
+				vc_lean_map( 'CBC_Digging_Deeper_Module', array( 'CBC_Digging_Deeper_Module', 'map' ) );
 			}
 
 		}
@@ -726,39 +675,20 @@ if ( ! class_exists( 'CBC_Digging_Module' ) ) {
 		public static function output( $atts, $content = null ) {
 
 			// Extract shortcode attributes (aka your module settings)
-			extract( vc_map_get_attributes( 'CBC_Digging_Module', $atts ) );
+			extract( vc_map_get_attributes( 'CBC_Digging_Deeper_Module', $atts ) );
 
 			// Define output
-			$output = '';
-
-			// Sermons are required
-			if ( empty( $deepers ) ) {
-				return;
-			}
 			
-
-			// Get repeatable field values
-			global $current_user;
-			$deepers = (array) vc_param_group_parse_atts( $deepers );
-	
-
-		
-	$output .= '<div class="digging-deeper-section"><h2><span class="ticon ticon-search"></span> Digging Deeper</h2>';
 			
-				// Loop through sermons
-			
-				foreach ( $deepers as $deeper ) {
-
-
-						if ( ! empty( $deeper['deeper']) ) {
-							$output .= '<div class="digging-deeper-content">' . wpautop( $deeper['deeper'] );
-						}
-					$output .= '</div>';
-
-				}
-$output .='</div>';
-			// Return output
-			return $output;
+    $html = '
+  <div class="digging-deeper-section"><h2><span class="ticon ticon-search"></span> Digging Deeper</h2>
+         
+        <div class="digging-deeper-content">' . $content . '</div>
+     
+    </div>';      
+     
+    return $html;
+     
 
 
 		}
@@ -776,27 +706,19 @@ $output .='</div>';
 			return array(
 				'name'        => esc_html__( 'Digging Deeper', 'locale' ),
 				'description' => esc_html__( 'Displays the Digging Deeper Content', 'locale' ),
-				'base'        => 'CBC_Digging_Module',
+				'base'        => 'CBC_Digging_Deeper_Module',
 				'params'      => array(
 
-					// Add a multi-field setting where you enter the label
-					// stream link and download link...
-					// IF this is a post type it would be better to instead have a simple field to instead
-					// Select your sermon and the output would be automatic.
-					array(
-						'type' => 'param_group',
-						'param_name' => 'deepers',
-						'group' => __( 'Digging Deeper Content', 'total' ),
-						'value' => urlencode( json_encode( array( ) ) ),
-						'params' => array(
+				
+						
 							array(
-								'type' => 'textarea',
-								'heading' => __( 'Type content here.', 'total' ),
-								'param_name' => 'deeper',
-							),
+								'type' => 'textarea_html',
+								'heading' => __( 'Description', 'total' ),
+								'param_name' => 'content',
+								'admin_label' => false,
 							
 						),
-					),
+					
 				),
 			);
 		}
@@ -804,11 +726,12 @@ $output .='</div>';
 	}
 
 }
-new CBC_Digging_Module;
+new CBC_Digging_Deeper_Module;
 
 
 
 	// VC Module for Leader Notes Module
+
 if ( ! class_exists( 'CBC_Leader_Module' ) ) {
 
 	class CBC_Leader_Module {
@@ -841,41 +764,25 @@ if ( ! class_exists( 'CBC_Leader_Module' ) ) {
 			extract( vc_map_get_attributes( 'CBC_Leader_Module', $atts ) );
 
 			// Define output
-			$output = '';
-
-			// Sermons are required
-			if ( empty( $leaders ) ) {
-				return;
-			}
-			
-
-			// Get repeatable field values
-			global $current_user;
+					global $current_user;
 			$leaders = (array) vc_param_group_parse_atts( $leaders );
 			$level = pmpro_getMembershipLevelForUser($current_user->ID);
 
 				if ($level->id ==2) {
 	
-
+			
+    $html = '
+<div class="leader-notes-section"><h2><span class="ticon ticon-users"></span> Leader Notes</h2>
+         
+        <div class="leader-notes-content">' . $content . '</div>
+     
+    </div>';      
+     
+    return $html;
+     }
 		
-	$output .= '<div class="leader-notes-section"><h2><span class="ticon ticon-users"></span> Leader Notes</h2>';
-			
-				// Loop through sermons
-			
-				foreach ( $leaders as $leader ) {
 
 
-						if ( ! empty( $leader['leader']) ) {
-							$output .= '<div class="leader-notes-content">' . wpautop( $leader['leader'] );
-						}
-					$output .= '</div>';
-
-				}
-$output .='</div>';
-			// Return output
-			return $output;
-
-}
 		}
 
 		/**
@@ -894,25 +801,17 @@ $output .='</div>';
 				'base'        => 'CBC_Leader_Module',
 				'params'      => array(
 
-					// Add a multi-field setting where you enter the label
-					// stream link and download link...
-					// IF this is a post type it would be better to instead have a simple field to instead
-					// Select your sermon and the output would be automatic.
-					array(
-						'type' => 'param_group',
-						'param_name' => 'leaders',
-						'group' => __( 'Leader Notes', 'total' ),
-						'value' => urlencode( json_encode( array( ) ) ),
-						'params' => array(
+				
+						
 							array(
-								'type' => 'textarea',
-								'heading' => __( 'Leader Notes', 'total' ),
-								'param_name' => 'leader',
-							),
+								'type' => 'textarea_html',
+								'heading' => __( 'Description', 'total' ),
+								'param_name' => 'content',
+								'admin_label' => false,
 							
 						),
 					),
-				),
+				
 			);
 		}
 

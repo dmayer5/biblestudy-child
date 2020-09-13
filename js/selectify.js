@@ -133,7 +133,8 @@ function upddaate_sselection(element,posstid ){
                         });
 
 }
-jQuery('.ldin-notes-form textarea').on('change', function(){
+
+//jQuery('.ldin-notes-form textarea').on('change', function(){
     /*var length = jQuery(this).val().length;
         var height = length/51*120;
         console.log(length, height);
@@ -150,7 +151,7 @@ jQuery('.ldin-notes-form textarea').on('change', function(){
                 jQuery(this).siblings('.tox.tox-tinymce').css('height', height+'px');
             }
         }*/
-    var Variables = {};
+  /*  var Variables = {};
     Variables.$obj = jQuery(this);
     Variables.ResizeTimer = setTimeout(
          function(){
@@ -160,4 +161,4 @@ jQuery('.ldin-notes-form textarea').on('change', function(){
          },
          10000
     );
-});
+});*/
