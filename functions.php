@@ -91,9 +91,10 @@ function tinymce_inline_notes(){ ?>
 <?php }
 add_action( 'wp_footer', 'tinymce_inline_notes', 99 );
 
-// START Stop removing div tags from WordPress - Linklay
+/* START Stop removing div tags from WordPress - Linklay
 function ikreativ_tinymce_fix( $init )
 {
+	  
     // html elements being stripped
     $init['extended_valid_elements'] = 'div[*]';
 
@@ -101,7 +102,7 @@ function ikreativ_tinymce_fix( $init )
     return $init;
 }
 add_filter('tiny_mce_before_init', 'ikreativ_tiny_mce_fix');
-// END Stop removing div tags from WordPress - Linklay
+// END Stop removing div tags from WordPress - Linklay*/
 
 
 function my_custom_scripts(){	
