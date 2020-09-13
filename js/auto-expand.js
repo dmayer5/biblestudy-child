@@ -1,5 +1,4 @@
 (function ($) {
-
     //
     // Auto Expand Note Inputs
     // ------------------------------------------------------------
@@ -34,7 +33,7 @@
 
         setNoteHeight(textAreaSelected, getHeightOfText);
     });
-
+    
     //
     // Auto Expand Note Inputs - On window resize
     // ------------------------------------------------------------
@@ -44,6 +43,13 @@
             var getHeightOfText = $(this).next('.tox.tox-tinymce').find('iframe').contents().find('.mce-content-body');
             setNoteHeight(textAreaSelected, getHeightOfText);
         })
+    });
+
+    //
+    // Reset note area height on save.
+    // ------------------------------------------------------------
+    $('.ldin-save-notes').click(function () {
+        $(this).parent().prev().css("height", "200px");
     });
 
 })(jQuery);
