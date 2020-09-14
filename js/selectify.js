@@ -27,10 +27,10 @@ jQuery('.lesson-single-question').each(function(){
                         .done(function(data) {
 
                             // log data to the console so we can see
-                            console.log(data); 
+                          //  console.log(data); 
                             if(data != ""){
                             	//id = parseInt(data);
-                                console.log(indexid);
+                              //  console.log(indexid);
                                 //console.log(data.replace(id, ''));
                                 jQuery('.lesson-single-question[index-id='+indexid+'] .selection_text_enabled').html(data);
                                 jQuery('body').click();
@@ -42,17 +42,17 @@ jQuery('.lesson-single-question').each(function(){
                         });
 })
 jQuery(document).on('touchend, mouseup', '.lesson-single-question', function(){
-                    console.log('yessssssssssss');
+                   // console.log('yessssssssssss');
                     if(document.getSelection().toString() != ""  ){
                        // console.log(document.getSelection());
                        text = escape(document.getSelection().toString().replace(/\*/g,'').replace(/\&/g,'%26'));
-                       console.log(text);
+                      // console.log(text);
                         length = document.getSelection().toString().length;
                         if(length < 4) return false;
                     main_html = jQuery(this).children('.selection_text_enabled').html();
                     var re = new RegExp((text),"g");
                     corped = escape(main_html).replace(re, '<span class="smallcaps">'+text+'</span><div class="selection_attr this_last hide"><a data-color="#E5F962"><span style="background-color:#E5F962"></span></a><a data-color="#72F721"><span style="background-color:#72F721"></span></a><a data-color="#6689FF"><span style="background-color:#6689FF"></span></a><a data-color="#D94BFF"><span style="background-color:#D94BFF"></span></a><a data-color="#FF81B1"><span style="background-color:#FF81B1"></span></a><a class="cros" data-color="remove">✕</a></div>');
-                    console.log(corped);
+                    //console.log(corped);
 
                     jQuery(this).children('.selection_text_enabled').html(unescape(corped).replace(/%20/g, " ").replace(/%3A/g, ":").replaceAll('%u201D', "\”").replaceAll('%u201C', "\“").replace(/%2C/g, ",").replaceAll('%u2019', "’").replace(/%25/g, "%").replace(/%21/g, "!").replace(/%22/g, "\"").replace(/%23/g, "#").replace(/%24/g, "$").replace(/%26/g, "&").replace(/%27/g, "'").replace(/%28/g, "(").replace(/%29/g, ")").replace(/%2B/g, "+").replace(/%2D/g, "-").replace(/%2F/g, "/").replace(/%3F/g, "?")).not('.ldin-note');;
                     //do an updaaateeac
@@ -66,7 +66,7 @@ function replaceAll(string, search, replace) {
     return string.split(search).join(replace);
 }
 jQuery(document).on('mouseenter',  '.smallcaps,.selection_attr', function(){
-    console.log('readddddddding');
+    //console.log('readddddddding');
     jQuery(this).next('.selection_attr').removeClass('hide');
 
 });
@@ -127,14 +127,13 @@ function upddaate_sselection(element,posstid ){
                         .done(function(data) {
 
                             // log data to the console so we can see
-                            console.log(data); 
+                           // console.log(data); 
 
                             // here we will handle errors and validation messages
                         });
 
 }
-
-//jQuery('.ldin-notes-form textarea').on('change', function(){
+jQuery('.ldin-notes-form textarea').on('change', function(){
     /*var length = jQuery(this).val().length;
         var height = length/51*120;
         console.log(length, height);
@@ -151,14 +150,55 @@ function upddaate_sselection(element,posstid ){
                 jQuery(this).siblings('.tox.tox-tinymce').css('height', height+'px');
             }
         }*/
-  /*  var Variables = {};
+    var Variables = {};
     Variables.$obj = jQuery(this);
     Variables.ResizeTimer = setTimeout(
+      
          function(){
-            Variables.$obj.siblings('.ldin-notes-button').children('.ldin-save-notes').addClass('clicked_from_code');
-            Variables.$obj.siblings('.ldin-notes-button').children('.ldin-save-notes').click();
-            console.log(Variables.$obj);
+            var indexid =  Variables.$obj.parent().parent().parent('div.lesson-single-question').attr('index-id');
+            var d = new Date();
+            if(getCookie('clicked_button_of'+indexid)){
+                if(d.getTime() - getCookie('clicked_button_of'+indexid) > 100000){
+                    Variables.$obj.siblings('.ldin-notes-button').children('.ldin-save-notes').addClass('clicked_from_code');
+                    Variables.$obj.siblings('.ldin-notes-button').children('.ldin-save-notes').click();
+                    setCookie('clicked_button_of'+indexid,    d.getTime(), 1);
+                   // console.log('cokkie was 10 seconds older.');
+                }
+                else{
+                    //do nothing
+                   // console.log('doing_nbothing');
+                }
+            }
+            else{
+                Variables.$obj.siblings('.ldin-notes-button').children('.ldin-save-notes').addClass('clicked_from_code');
+                Variables.$obj.siblings('.ldin-notes-button').children('.ldin-save-notes').click();
+                setCookie('clicked_button_of'+indexid,    d.getTime(), 1);
+               // console.log('cookie set ass new');
+            }
+            //console.log(Variables.$obj);
          },
-         10000
+         100000
     );
-});*/
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+    }
+
+});
