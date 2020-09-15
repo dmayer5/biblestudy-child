@@ -763,7 +763,7 @@ span.ld-lesson-section-heading {
   border-radius: 3px;
 }
 
-.lesson-single-question {
+.lesson-single-question, .lesson-notes-section {
   padding-top: 20px;
   padding-bottom: 20px;
 }
