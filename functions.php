@@ -107,7 +107,7 @@ add_filter('tiny_mce_before_init', 'ikreativ_tiny_mce_fix');
 
 function my_custom_scripts(){	
    global  $post;	
-    wp_enqueue_script('custom-js', get_stylesheet_directory_uri() . '/js/scripts.js', array('jquery'), '', true);	
+    wp_enqueue_script('custom-js', get_stylesheet_directory_uri(), array('jquery'), '', true);	
         if ( 'sfwd-lessons' === get_post_type() ) {	
 			if ( wp_script_is( 'selectify-js', 'enqueued' ) ) {	
 				return;	
@@ -627,7 +627,7 @@ if ( ! class_exists( 'CBC_Verse_Module' ) ) {
 								'admin_label' => false,
 							),
 							array(
-								'type' => 'textfield',
+								'type' => 'textarea',
 								'heading' => __( 'Bible Verse', 'total' ),
 								'param_name' => 'description',
 								'admin_label' => false,
